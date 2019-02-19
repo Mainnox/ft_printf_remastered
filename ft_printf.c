@@ -25,6 +25,7 @@ static t_printf		*ft_create_struct(const char *format, t_printf *handle)
 	handle->str = format;
 	handle->index = 0;
 	handle->nbprint = 0;
+	handle->extra = NULL;
 	if (!ft_reset_extra(handle))
 		return (0);
 	return (1);
@@ -49,6 +50,7 @@ int			ft_printf(const char *format, ...)
 		}
 		ft_putchar_printf(handle);
 	}
+	free(handle->extra);
 	free(handle);
 	va_end(ap);
 	return (handle->nbprint);
