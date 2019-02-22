@@ -18,7 +18,7 @@ static int		ft_reset_extra(handle)
 	return (1);
 }
 
-static t_printf		*ft_create_struct(const char *format, t_printf *handle)
+static int		*ft_create_struct(const char *format, t_printf *handle)
 {
 	if (!(handle = (t_printf *)malloc(sizeof(t_printf))))
 		return (-1);
@@ -38,7 +38,7 @@ int			ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	if (!ft_create_struct(format, handle))
-		return (0);
+		return (-1);
 	while (handle->str[handle->index])
 	{
 		if (handle->str[handle->index] == '%')
@@ -46,7 +46,7 @@ int			ft_printf(const char *format, ...)
 			handle->index++;
 			ft_flags_printf(handle, ap);
 			if (!ft_reset_extra(handle))
-				return (0);
+				return (-1);
 		}
 		ft_putchar_printf(handle);
 	}
