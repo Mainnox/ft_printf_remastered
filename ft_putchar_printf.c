@@ -1,8 +1,13 @@
 #include "ft_printf.h"
 
+static void		ft_putchar_seul(char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putchar_printf(t_printf *handle)
 {
-	write(1, handle->str[handle->index], 1);
+	ft_putchar_seul(handle->str[handle->index]);
 	handle->nbprint++;
 	handle->index++;
 }
