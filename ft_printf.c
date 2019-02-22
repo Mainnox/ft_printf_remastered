@@ -3,7 +3,7 @@
 static int		ft_reset_extra(t_printf *handle)
 {
 	if (handle->extra)
-		free(extra);
+		free(handle->extra);
 	if (!(handle->extra = (t_extra *)malloc(sizeof(t_extra))))
 		return (0);
 	handle->extra->plus = -1;
