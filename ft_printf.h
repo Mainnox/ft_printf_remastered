@@ -27,7 +27,7 @@ typedef struct	s_printf
 }				t_printf;
 
 // SUPPRIME LES TEST
-void	ft_putstr_test(char *str);
+void	ft_putstr_test(const char *str);
 void	ft_putchar_test(char c);
 //STP
 
