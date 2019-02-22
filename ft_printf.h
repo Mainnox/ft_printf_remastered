@@ -21,7 +21,7 @@ typedef struct	s_extra
 typedef struct	s_printf
 {
 	int			index;
-	const char	str;
+	const char	*str;
 	int			nbprint;
 	t_extra		*extra;
 }				t_printf;
