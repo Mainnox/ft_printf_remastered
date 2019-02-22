@@ -39,5 +39,5 @@ void	ft_set_plus(t_printf *handle);
 void	ft_set_hastag(t_printf *handle);
 void	ft_set_star(t_printf *handle, va_list ap);
 void	ft_set_size(t_printf *handle);
-int		ft_printf(const char str, ...);
+int		ft_printf(const char *str, ...);
 #endif
