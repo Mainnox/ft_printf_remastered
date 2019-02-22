@@ -39,7 +39,7 @@ void		ft_flags_printf(t_printf *handle, va_list ap)
 			ft_set_width(handle);
 			continue;
 		}
-		if (handle->extra->done == -1 && (handle->str[handle->index] == 'h' || handle->str[handle->index] == 'l')
+		if (handle->extra->done == -1 && (handle->str[handle->index] == 'h' || handle->str[handle->index] == 'l'))
 		{
 				ft_set_size(handle);
 				continue;
