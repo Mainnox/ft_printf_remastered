@@ -39,7 +39,7 @@ int			ft_printf(const char *format, ...)
 	ft_putstr_test("Avant le va_start\n");
 	va_start(ap, format);
 	ft_putstr_test("Apres le va_start\n");
-	if (!ft_create_struct(format, handle))
+	if (ft_create_struct(format, handle) <= 0)
 		return (-1);
 		ft_putstr_test("Apres la struct\n");
 	while (handle->str[handle->index])
