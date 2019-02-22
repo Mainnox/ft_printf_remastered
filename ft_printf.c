@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static int		ft_reset_extra(handle)
+static int		ft_reset_extra(t_printf *handle)
 {
 	if (handle->extra)
 		free(extra);
@@ -18,7 +18,7 @@ static int		ft_reset_extra(handle)
 	return (1);
 }
 
-static int		*ft_create_struct(const char *format, t_printf *handle)
+static int		ft_create_struct(const char *format, t_printf *handle)
 {
 	if (!(handle = (t_printf *)malloc(sizeof(t_printf))))
 		return (-1);
