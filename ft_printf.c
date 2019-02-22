@@ -22,7 +22,7 @@ static int		*ft_create_struct(const char *format, t_printf *handle)
 {
 	if (!(handle = (t_printf *)malloc(sizeof(t_printf))))
 		return (-1);
-	handle->str = *format;
+	handle->str = format;
 	handle->index = 0;
 	handle->nbprint = 0;
 	handle->extra = NULL;
