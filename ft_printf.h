@@ -4,6 +4,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
+//SUPPRIME CA
+#include <stdio.h>
+// Au dessus
+
 
 typedef struct	s_extra
 {
@@ -23,6 +27,7 @@ typedef struct	s_printf
 	int			index;
 	const char	*str;
 	int			nbprint;
+	va_list		ap;
 	t_extra		*extra;
 }				t_printf;
 
@@ -32,7 +37,7 @@ void	ft_putchar_test(char c);
 //STP
 
 void	ft_putchar_printf(t_printf *handle);
-void	ft_flags_printf(t_printf *handle, va_list ap);
+void	ft_flags_printf(t_printf *handle);
 int		ft_atoi_printf(t_printf *handle);
 int		ft_nbrlen(unsigned long long nb, char signe);
 void	ft_set_moins(t_printf *handle);
@@ -42,9 +47,11 @@ void	ft_set_zero(t_printf *handle);
 void	ft_set_width(t_printf *handle);
 void	ft_set_plus(t_printf *handle);
 void	ft_set_hastag(t_printf *handle);
-void	ft_set_star(t_printf *handle, va_list ap);
+void	ft_set_star(t_printf *handle);
 void	ft_set_size(t_printf *handle);
 int		ft_printf(const char *str, ...);
-void	ft_print_printf(t_printf *handle, va_list ap);
+void	ft_print_printf(t_printf *handle);
 void	ft_print_c(t_printf *handle, unsigned *c);
+void	ft_print_char(t_printf *handle, char c);
+void	ft_print_while(t_printf *handle, int len, char c);
 #endif

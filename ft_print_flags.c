@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_print_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 17:24:22 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/26 08:34:42 by akremer          ###   ########.fr       */
+/*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
+/*   Updated: 2019/02/26 08:34:51 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_atoi_printf(t_printf *handle)
+void		ft_print_while(t_printf *handle, int len, char c)
 {
-	int			i;
-	int			result;
-	const char	*str;
-	int			tours;
-
-	tours = 0;
-	str = handle->str;
-	result = 0;
-	i = handle->index;
-	if (str[i])
+	while (len > 0)
 	{
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			result = result * 10 + str[i] - 48;
-			tours++;
-			i++;
-		}
+		ft_print_char(handle, c);
+		len--;
 	}
-	if (tours)
-		return (result);
-	return (-4);
 }

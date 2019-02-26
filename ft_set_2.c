@@ -12,8 +12,8 @@ void        ft_set_plus(t_printf *handle)
     handle->extra->plus = 1;
 }
 
-void        ft_set_star(t_printf *handle, va_list ap)
+void		ft_set_star(t_printf *handle)
 {
-    handle->index++;
-    handle->extra->width = va_arg(ap, int);
+	handle->index++;
+	handle->extra->width = (int)va_arg(handle->ap, unsigned *);
 }

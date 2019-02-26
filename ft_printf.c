@@ -36,10 +36,9 @@ static t_printf		*ft_create_struct(const char *format)
 int			ft_printf(const char *format, ...)
 {
 	t_printf	*handle;
-	va_list		ap;
 
-	va_start(ap, format);
 	handle = ft_create_struct(format);
+	va_start(handle->ap, format);
 	if (handle == NULL)
 		return (-1);
 	while (handle->str[handle->index])
@@ -47,7 +46,7 @@ int			ft_printf(const char *format, ...)
 		if (handle->str[handle->index] == '%')
 		{
 			handle->index++;
-			ft_flags_printf(handle, ap);
+			ft_flags_printf(handle);
 			if (!ft_reset_extra(handle))
 				return (-1);
 		}
@@ -55,6 +54,6 @@ int			ft_printf(const char *format, ...)
 	}
 	free(handle->extra);
 	free(handle);
-	va_end(ap);
+	va_end(handle->ap);
 	return (handle->nbprint);
 }

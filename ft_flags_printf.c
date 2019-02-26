@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void		ft_flags_printf(t_printf *handle, va_list ap)
+void		ft_flags_printf(t_printf *handle)
 {
 	while (42)
 	{
@@ -31,7 +31,7 @@ void		ft_flags_printf(t_printf *handle, va_list ap)
 		}
 		if (handle->extra->done == -1 && handle->str[handle->index] == '*')
 		{
-			ft_set_star(handle, ap);
+			ft_set_star(handle);
 			continue;
 		}
 		if (handle->extra->done == -1 && (handle->str[handle->index] >= '1' && handle->str[handle->index] <= '9'))
@@ -55,7 +55,7 @@ void		ft_flags_printf(t_printf *handle, va_list ap)
 			continue;
 		}
 		if (handle ->extra->done == -1 && (handle->str[handle->index] == 'c'))
-			ft_print_printf(handle, ap);
+			ft_print_printf(handle);
 		break;
 	}
 }
