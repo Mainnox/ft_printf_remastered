@@ -54,4 +54,7 @@ void	ft_print_printf(t_printf *handle);
 void	ft_print_c(t_printf *handle, unsigned *c);
 void	ft_print_char(t_printf *handle, char c);
 void	ft_print_while(t_printf *handle, int len, char c);
+int		ft_strlen(char *str);
+void	ft_print_str(t_printf *handle, char *str);
+void	ft_print_s(t_printf *handle, unsigned *s);
 #endif

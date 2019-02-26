@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_flags.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/26 09:54:51 by akremer          ###   ########.fr       */
+/*   Created: 2019/02/26 09:58:26 by akremer           #+#    #+#             */
+/*   Updated: 2019/02/26 10:12:22 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_print_while(t_printf *handle, int len, char c)
+int			ft_strlen(char *str)
 {
-	handle->nbprint += len;
-	while (len > 0)
-	{
-		ft_print_char(handle, c);
-		len--;
-	}
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
