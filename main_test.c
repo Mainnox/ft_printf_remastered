@@ -4,9 +4,8 @@
 int     main(void)
 {
 	ft_printf("\nLe vrai:\n");
-       printf("Coucou%10sCoucou\n", "Cle test");
+       printf("Coucou%hhoCoucou\n", 900);
 	ft_printf("\nLe faux:\n");
-    ft_printf("Coucou%10sCoucou\n", "Cle test");
-	printf("%hhd", (unsigned char)1000);
+    ft_printf("Coucou%hhoCoucou\n", 900);
     return (0);
 }
