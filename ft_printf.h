@@ -57,4 +57,5 @@ void	ft_print_while(t_printf *handle, int len, char c);
 int		ft_strlen(char *str);
 void	ft_print_str(t_printf *handle, char *str);
 void	ft_print_s(t_printf *handle, unsigned *s);
+void	ft_print_nbr(t_printf *handle, int base);
 #endif

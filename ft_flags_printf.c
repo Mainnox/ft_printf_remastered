@@ -54,7 +54,7 @@ void		ft_flags_printf(t_printf *handle)
 			ft_set_size(handle);
 			continue;
 		}
-		if (handle ->extra->done == -1 && (handle->str[handle->index] == 'c' || handle->str[handle->index] == 's'))
+		if (handle ->extra->done == -1 && (handle->str[handle->index] == 'c' || handle->str[handle->index] == 's' || handle->str[handle->index] == 'd' || handle->str[handle->index] == 'i' || handle->str[handle->index] == 'o' || handle->str[handle->index] == 'u' || handle->str[handle->index] == 'x' || handle->str[handle->index] == 'X'))
 			ft_print_printf(handle);
 		break;
 	}
