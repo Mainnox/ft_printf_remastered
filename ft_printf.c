@@ -18,17 +18,19 @@ static int		ft_reset_extra(t_printf *handle)
 	return (1);
 }
 
-static int		ft_create_struct(const char *format, t_printf *handle)
+static t_printf		*ft_create_struct(const char *format)
 {
+	t_printf *handle;
+
 	if (!(handle = (t_printf *)malloc(sizeof(t_printf))))
-		return (-1);
+		return (NULL);
 	handle->str = format;
 	handle->index = 0;
 	handle->nbprint = 0;
 	handle->extra = NULL;
 	if (!ft_reset_extra(handle))
-		return (0);
-	return (1);
+		return (NULL);
+	return (handle);
 }
 
 int			ft_printf(const char *format, ...)
@@ -36,16 +38,12 @@ int			ft_printf(const char *format, ...)
 	t_printf	*handle;
 	va_list		ap;
 
-	ft_putstr_test("Avant le va_start\n");
 	va_start(ap, format);
-	ft_putstr_test("Apres le va_start\n");
-	if (ft_create_struct(format, handle) <= 0)
+	handle = ft_create_struct(format);
+	if (handle == NULL)
 		return (-1);
-		ft_putstr_test(handle->str);
-		ft_putstr_test("Apres la struct\n");
 	while (handle->str[handle->index])
 	{
-		ft_putstr_test("Tour de boucle\n");
 		if (handle->str[handle->index] == '%')
 		{
 			handle->index++;
@@ -53,15 +51,10 @@ int			ft_printf(const char *format, ...)
 			if (!ft_reset_extra(handle))
 				return (-1);
 		}
-		ft_putstr_test("Avant le printf\n");
 		ft_putchar_printf(handle);
 	}
-	ft_putstr_test("Avant le free extra\n");
 	free(handle->extra);
-	ft_putstr_test("Apres le free extra\n");
 	free(handle);
-	ft_putstr_test("Apres le free handle\n");
 	va_end(ap);
-	ft_putstr_test("Apres le va end\n");
 	return (handle->nbprint);
 }

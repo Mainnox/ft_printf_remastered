@@ -45,4 +45,6 @@ void	ft_set_hastag(t_printf *handle);
 void	ft_set_star(t_printf *handle, va_list ap);
 void	ft_set_size(t_printf *handle);
 int		ft_printf(const char *str, ...);
+void	ft_print_printf(t_printf *handle, va_list ap);
+void	ft_print_c(t_printf *handle, unsigned *c);
 #endif

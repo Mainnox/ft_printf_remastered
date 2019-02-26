@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: akremer <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/02/26 06:47:20 by akremer           #+#    #+#              #
+#    Updated: 2019/02/26 07:28:45 by akremer          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprint.a
 
 SRC =	ft_atoi_printf.c			\
@@ -8,9 +20,9 @@ SRC =	ft_atoi_printf.c			\
 		ft_set_1.c					\
 		ft_set_2.c					\
 		ft_set_size.c				\
-		# Surprime les test
 		ft_putstr_test.c			\
-		main_test.c					
+		ft_print_printf.c			\
+		ft_print_c.c
 
 FLAGS =	-Wall -Wextra -Werror -c
 
@@ -27,6 +39,20 @@ clean:
 	@rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
+
+test: re
+	@gcc main_test.c $(NAME)
+	@./a.out
+
+propre:	fclean
+	@rm -rf a.out
+
+save: propre
+	git add *
+	git commit -m "Sauvegarde auto"
+	git push
+
+

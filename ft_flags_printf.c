@@ -54,6 +54,8 @@ void		ft_flags_printf(t_printf *handle, va_list ap)
 			ft_set_size(handle);
 			continue;
 		}
+		if (handle ->extra->done == -1 && (handle->str[handle->index] == 'c'))
+			ft_print_printf(handle, ap);
 		break;
 	}
 }
