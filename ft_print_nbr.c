@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 12:52:44 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 13:19:26 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,34 @@ void			ft_flags_X(t_printf *handle, char *base, unsigned int ba, unsigned long l
         ft_print_while(handle, handle->extra->moins - nbdisplay, ' ');
 }
 
+void			ft_flags_signed(t_printf *handle, char *base, unsigned int ba, long long nb)
+{
+	int		nbdisplay;
+	char	signe;
+
+	signe = (nb < 0) ? 1 : 0;
+	nb = (nb < 0) ? -nb : nb;
+	nbdisplay = ft_cal_nbdisplay(handle, ft_nbrlen(nb, signe, ba), 'c', ba);
+	if (handle->extra->precision != -1)
+		handle->extra->zero = -1;
+	if (handle->extra->width && handle->extra->moins == -1 && handle->extra->zero == -1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
+	if (handle->extra->zero == 0 || handle->extra->zero == -4 || handle->extra->width != -1)
+		handle->extra->zero = handle->extra->width;
+	ft_print_signe(handle, signe);
+	if (handle->extra->precision != -1)
+		ft_print_while(handle, handle->extra->precision - ft_nbrlen(nb, signe, ba), '0');
+	if (handle->extra->zero && handle->extra->moins == -1 && handle->extra->precision == -1)
+		ft_print_while(handle, handle->extra->zero - nbdisplay, '0');
+	ft_display_signed(handle, base, ba, nb);
+	if (handle->extra->moins == 0 || handle->extra->moins == -4)
+        handle->extra->moins = handle->extra->zero;
+    if (handle->extra->width != -1 && (handle->extra->moins == 0 || handle->extra->moins == -4))
+        handle->extra->moins = handle->extra->width;
+    if (handle->extra->moins)
+        ft_print_while(handle, handle->extra->moins - nbdisplay, ' ');
+}
+
 void			ft_flags_unsigned(t_printf *handle, char *base, unsigned int ba, unsigned long long nb)
 {
 	int		nbdisplay;
@@ -88,15 +116,15 @@ void			ft_print_signed(t_printf *handle, int ba)
 	char base[16] = "0123456789abcdef";
 
 	if (handle->extra->size == 1)
-		ft_display_signed(handle, base, ba, (char)va_arg(handle->ap, unsigned *));
+		ft_flags_signed(handle, base, ba, (char)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 2)
-		ft_display_signed(handle, base, ba, (short)va_arg(handle->ap, unsigned *));
+		ft_flags_signed(handle, base, ba, (short)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 3)
-		ft_display_signed(handle, base, ba, (long)va_arg(handle->ap, unsigned *));
+		ft_flags_signed(handle, base, ba, (long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 4)
-		ft_display_signed(handle, base, ba, (long long)va_arg(handle->ap, unsigned *));
+		ft_flags_signed(handle, base, ba, (long long)va_arg(handle->ap, unsigned *));
 	else 
-		ft_display_signed(handle, base, ba, (int)va_arg(handle->ap, unsigned *));
+		ft_flags_signed(handle, base, ba, (int)va_arg(handle->ap, unsigned *));
 	handle->index++;
 	handle->extra->done = 12;
 }

@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 12:49:56 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 13:19:23 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,10 @@ void		ft_print_hastag(t_printf *handle, char c, unsigned int ba)
 		ft_print_str(handle, "0x");
 	else
 		ft_print_char(handle, '0');
+}
+
+void		ft_print_signe(t_printf *handle, char signe)
+{
+	if (signe == 1)
+		ft_print
 }
