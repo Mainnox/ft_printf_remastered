@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 15:28:45 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 16:53:25 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba)
 		len += 2;
 	else if (handle->extra->hastag == 1 && ba == 16)
 		len += 2;
-	else
+	else if (handle->extra->hastag == 1)
 		len++;
 	return (len);
 }

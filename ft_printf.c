@@ -49,6 +49,7 @@ int			ft_printf(const char *format, ...)
 			ft_flags_printf(handle);
 			if (!ft_reset_extra(handle))
 				return (-1);
+			continue ;
 		}
 		ft_putchar_printf(handle);
 	}

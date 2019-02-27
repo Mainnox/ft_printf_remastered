@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:12:06 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 15:51:40 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 17:38:03 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void		ft_print_char(t_printf *handle, char c)
 {
 	handle->nbprint++;
+	write(1, &c, 1);
+}
+
+void		ft_print_char2(char c)
+{
 	write(1, &c, 1);
 }
 

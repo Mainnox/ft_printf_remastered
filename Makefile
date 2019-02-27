@@ -6,11 +6,11 @@
 #    By: akremer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/26 06:47:20 by akremer           #+#    #+#              #
-#    Updated: 2019/02/27 15:52:44 by akremer          ###   ########.fr        #
+#    Updated: 2019/02/27 17:38:05 by akremer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprint.a
+NAME = libftprintf.a
 
 SRC =	ft_atoi_printf.c			\
 		ft_flags_printf.c			\

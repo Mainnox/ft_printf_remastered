@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 15:28:43 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 17:37:56 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_display_unsigned(t_printf *handle, char *base, unsigned int ba, 
 {
 	if (nb >= ba)
 		ft_display_unsigned(handle, base, ba, nb / ba);
-	ft_print_char(handle, base[nb % ba]);
+	ft_print_char2(base[nb % ba]);
 }
 
 void			ft_flags_X(t_printf *handle, char *base, unsigned int ba, unsigned long long nb)
@@ -103,6 +103,7 @@ void			ft_flags_unsigned(t_printf *handle, char *base, unsigned int ba, unsigned
 	if (handle->extra->zero && handle->extra->moins == -1 && handle->extra->precision == -1)
 		ft_print_while(handle, handle->extra->zero - nbdisplay, '0');
 	ft_display_unsigned(handle, base, ba, nb);
+	handle->nbprint += ft_nbrlen(nb, 0, ba);
 	if (handle->extra->moins == 0 || handle->extra->moins == -4)
         handle->extra->moins = handle->extra->zero;
     if (handle->extra->width != -1 && (handle->extra->moins == 0 || handle->extra->moins == -4))
