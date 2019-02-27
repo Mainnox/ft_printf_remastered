@@ -64,4 +64,5 @@ void	ft_print_hastag(t_printf *handle, char c, unsigned int ba);
 int		ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba);
 int		ft_cal_nbdisplay_signed(t_printf *handle, int len, char signe);
 void	ft_print_signe(t_printf *handle, char signe);
+void	ft_print_pc(t_printf *handle);
 #endif
