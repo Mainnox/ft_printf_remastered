@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 13:19:26 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:28:43 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			ft_flags_X(t_printf *handle, char *base, unsigned int ba, unsigned long l
 	ft_display_unsigned(handle, base, ba, nb);
 	if (handle->extra->moins == 0 || handle->extra->moins == -4)
         handle->extra->moins = handle->extra->zero;
-    if (handle->extra->width != -1 && (handle->extra->moins == 0 || handle->extra->moins == -4))
+    if ((handle->extra->width != -1 && (handle->extra->moins == 0) && handle->extra->moins == -4))
         handle->extra->moins = handle->extra->width;
     if (handle->extra->moins)
         ft_print_while(handle, handle->extra->moins - nbdisplay, ' ');
@@ -64,12 +64,12 @@ void			ft_flags_signed(t_printf *handle, char *base, unsigned int ba, long long 
 
 	signe = (nb < 0) ? 1 : 0;
 	nb = (nb < 0) ? -nb : nb;
-	nbdisplay = ft_cal_nbdisplay(handle, ft_nbrlen(nb, signe, ba), 'c', ba);
+	nbdisplay = ft_cal_nbdisplay_signed(handle, ft_nbrlen(nb, signe, ba), signe);
 	if (handle->extra->precision != -1)
 		handle->extra->zero = -1;
 	if (handle->extra->width && handle->extra->moins == -1 && handle->extra->zero == -1)
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
-	if (handle->extra->zero == 0 || handle->extra->zero == -4 || handle->extra->width != -1)
+	if ((handle->extra->zero == 0 || handle->extra->zero == -4) && handle->extra->width != -1)
 		handle->extra->zero = handle->extra->width;
 	ft_print_signe(handle, signe);
 	if (handle->extra->precision != -1)
@@ -94,7 +94,7 @@ void			ft_flags_unsigned(t_printf *handle, char *base, unsigned int ba, unsigned
 		handle->extra->zero = -1;
 	if (handle->extra->width && handle->extra->moins == -1 && handle->extra->zero == -1)
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
-	if (handle->extra->zero == 0 || handle->extra->zero == -4 || handle->extra->width != -1)
+	if ((handle->extra->zero == 0 || handle->extra->zero == -4) && handle->extra->width != -1)
 		handle->extra->zero = handle->extra->width;
 	if (handle->extra->hastag == 1)
 		ft_print_hastag(handle, 'c', ba);

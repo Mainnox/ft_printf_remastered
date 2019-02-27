@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 13:19:23 by akremer          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:28:45 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ int			ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba)
 	return (len);
 }
 
+int			ft_cal_nbdisplay_signed(t_printf *handle, int len, char signe)
+{
+	if (handle->extra->precision > len)
+		len = handle->extra->precision;
+	if (signe == 0 && (handle->extra->blanck == 1 || handle->extra->plus == 1))
+		len++;
+	return (len);
+}
+
 void		ft_print_hastag(t_printf *handle, char c, unsigned int ba)
 {
 	if (c == 'X')
@@ -48,5 +57,9 @@ void		ft_print_hastag(t_printf *handle, char c, unsigned int ba)
 void		ft_print_signe(t_printf *handle, char signe)
 {
 	if (signe == 1)
-		ft_print
+		ft_print_char(handle, '-');
+	else if (handle->extra->plus == 1)
+		ft_print_char(handle, '+');
+	else if (handle->extra->blanck == 1)
+		ft_print_char(handle, ' ');
 }
