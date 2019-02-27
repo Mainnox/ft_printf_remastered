@@ -39,7 +39,7 @@ void	ft_putchar_test(char c);
 void	ft_putchar_printf(t_printf *handle);
 void	ft_flags_printf(t_printf *handle);
 int		ft_atoi_printf(t_printf *handle);
-int		ft_nbrlen(unsigned long long nb, char signe);
+int		ft_nbrlen(unsigned long long nb, char signe, unsigned int ba);
 void	ft_set_moins(t_printf *handle);
 void	ft_set_blanck(t_printf *handle);
 void	ft_set_precision(t_printf *handle);
@@ -57,5 +57,10 @@ void	ft_print_while(t_printf *handle, int len, char c);
 int		ft_strlen(char *str);
 void	ft_print_str(t_printf *handle, char *str);
 void	ft_print_s(t_printf *handle, unsigned *s);
-void	ft_print_nbr(t_printf *handle, int base);
+void	ft_print_signed(t_printf *handle, int base);
+void	ft_print_unsigned(t_printf *handle, unsigned int base);
+void	ft_print_X(t_printf *handle, unsigned int base);
+void	ft_print_hastag(t_printf *handle, char c, unsigned int ba);
+int		ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba);
+
 #endif
