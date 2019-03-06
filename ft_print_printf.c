@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:02:24 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 06:55:07 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 11:34:28 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ void		ft_print_printf(t_printf *handle)
 		ft_print_X(handle, 16);
 	if (handle->str[handle->index] == '%' && handle->extra->done == -1)
 		ft_print_pc(handle);
+	if (handle->str[handle->index] == 'p' && handle->extra->done == -1)
+	{
+		handle->extra->hastag = 1;
+		handle->extra->size = 6;
+		ft_print_unsigned(handle, 16);
+	}
 }

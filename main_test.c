@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 10:54:05 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 10:16:58 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 11:38:59 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int     main(void)
 	int i;
 	int j;
 
-    i =    printf("Le vrai : %.#x", 0);
-    j = ft_printf("Le faux : %.#x", 0);
+    i =    printf("Le vrai : %.8p\n", i);
+    j = ft_printf("Le faux : %.8p\n", i);
 	printf("\nLe vrai : %d\nLe faux : %d\n", i, j);
     return (0);
 }

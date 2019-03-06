@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 09:55:51 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 09:01:30 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 11:09:36 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void		ft_print_s(t_printf *handle, unsigned *s)
 	int		len;
 
 	str = (char *)s;
+	if (!s)
+		ft_print_str(handle, "(null)");
+	else
+	{
 	len = ft_cal_len(handle, str);
 	if (handle->extra->precision != -1)
 		handle->extra->zero = -1;
@@ -50,6 +54,7 @@ void		ft_print_s(t_printf *handle, unsigned *s)
 	ft_print_pre(handle, str, len);
 	if (handle->extra->moins == 1)
 		ft_print_while(handle, handle->extra->width - len, ' ');
+	}
 	handle->index++;
 	handle->extra->done = 12;
 }
