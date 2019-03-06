@@ -2,18 +2,8 @@
 
 void        ft_set_moins(t_printf *handle)
 {
-    handle->index++;
-    handle->extra->moins = ft_atoi_printf(handle);
-	if (handle->str[handle->index] == '*')
-	{
-		handle->extra->moins = (int)va_arg(handle->ap, unsigned *);
-		if (handle->extra->moins < 0)
-			handle->extra->moins = -handle->extra->moins;
-		handle->index++;
-		return ;
-	}
-	if (handle->extra->moins != -4)
-		handle->index += ft_nbrlen((unsigned long long)handle->extra->moins, 0, 10);
+	handle->extra->moins = 1;
+	handle->index++;
 }
 
 void        ft_set_blanck(t_printf *handle)
@@ -36,22 +26,14 @@ void        ft_set_precision(t_printf *handle)
 	}
 	if (handle->extra->precision != -4)
  	   handle->index += ft_nbrlen((unsigned long long)handle->extra->precision, 0, 10);
+	if (handle->extra->precision == -4)
+		handle->extra->precision = 0;
 }
 
 void        ft_set_zero(t_printf *handle)
 {
     handle->index++;
-    handle->extra->zero = ft_atoi_printf(handle);
-	if (handle->str[handle->index] == '*')
-	{
-		handle->extra->zero = (int)va_arg(handle->ap, unsigned *);
-		if (handle->extra->zero < 0)
-			handle->extra->zero = -handle->extra->zero;
-		handle->index++;
-		return ;
-	}
-	if (handle->extra->zero != -4)
-    	handle->index += ft_nbrlen((unsigned long long)handle->extra->zero, 0, 10);
+	handle->extra->zero = 1;
 }
 
 void        ft_set_width(t_printf *handle)

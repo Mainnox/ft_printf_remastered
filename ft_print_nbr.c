@@ -6,11 +6,17 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 17:37:56 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 10:16:50 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		ft_rien(void)
+{
+	return ;
+}
+
 
 static void		ft_display_signed(t_printf *handle, char *base, int ba, long long nb)
 {
@@ -28,88 +34,100 @@ static void		ft_display_unsigned(t_printf *handle, char *base, unsigned int ba, 
 {
 	if (nb >= ba)
 		ft_display_unsigned(handle, base, ba, nb / ba);
-	ft_print_char2(base[nb % ba]);
+	ft_print_char(handle, base[nb % ba]);
 }
 
 void			ft_flags_X(t_printf *handle, char *base, unsigned int ba, unsigned long long nb)
 {
 	int		nbdisplay;
+	int		len;
 
-	nbdisplay = ft_cal_nbdisplay(handle, ft_nbrlen(nb, 0, ba), 'X', ba);
+	len = ft_nbrlen(nb, 0, ba);
+	if (nb == 0 && handle->extra->precision == 0)
+		len = 0;
+	nbdisplay = ft_cal_nbdisplay(handle, len, 'X', ba, nb);
 	if (handle->extra->precision != -1)
 		handle->extra->zero = -1;
-	if (handle->extra->width && handle->extra->moins == -1 && handle->extra->zero == -1)
+	if (handle->extra->moins == -1 && handle->extra->zero == -1)
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
-	if (handle->extra->zero == 0 || handle->extra->zero == -4 || handle->extra->width != -1)
-		handle->extra->zero = handle->extra->width;
 	if (handle->extra->hastag == 1)
-		ft_print_hastag(handle, 'X', ba);
+	{
+		if (nb == 0)
+			ft_rien();
+		else
+			ft_print_hastag(handle, 'X', ba);
+	}
 	if (handle->extra->precision != -1)
-		ft_print_while(handle, handle->extra->precision - ft_nbrlen(nb, 0, ba), '0');
-	if (handle->extra->zero && handle->extra->moins == -1 && handle->extra->precision == -1)
-		ft_print_while(handle, handle->extra->zero - nbdisplay, '0');
-	ft_display_unsigned(handle, base, ba, nb);
-	if (handle->extra->moins == 0 || handle->extra->moins == -4)
-        handle->extra->moins = handle->extra->zero;
-    if ((handle->extra->width != -1 && (handle->extra->moins == 0) && handle->extra->moins == -4))
-        handle->extra->moins = handle->extra->width;
-    if (handle->extra->moins)
-        ft_print_while(handle, handle->extra->moins - nbdisplay, ' ');
+		ft_print_while(handle, handle->extra->precision - len, '0');
+	if (handle->extra->zero == 1 && handle->extra->moins == -1 && handle->extra->precision == -1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, '0');
+	if (handle->extra->precision == 0 && nb == 0)
+		ft_rien();
+	else
+		ft_display_unsigned(handle, base, ba, nb);
+	if (handle->extra->moins == 1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 }
 
 void			ft_flags_signed(t_printf *handle, char *base, unsigned int ba, long long nb)
 {
 	int		nbdisplay;
 	char	signe;
+	int		len;
 
 	signe = (nb < 0) ? 1 : 0;
 	nb = (nb < 0) ? -nb : nb;
-	nbdisplay = ft_cal_nbdisplay_signed(handle, ft_nbrlen(nb, signe, ba), signe);
+	len = ft_nbrlen(nb, signe, ba);
+	if (nb == 0 && handle->extra->precision == 0)
+		len = 0;
+	nbdisplay = ft_cal_nbdisplay_signed(handle, len, signe);
 	if (handle->extra->precision != -1)
 		handle->extra->zero = -1;
-	if (handle->extra->width && handle->extra->moins == -1 && handle->extra->zero == -1)
+	if (handle->extra->moins == -1 && handle->extra->zero == -1)
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
-	if ((handle->extra->zero == 0 || handle->extra->zero == -4) && handle->extra->width != -1)
-		handle->extra->zero = handle->extra->width;
 	ft_print_signe(handle, signe);
 	if (handle->extra->precision != -1)
-		ft_print_while(handle, handle->extra->precision - ft_nbrlen(nb, signe, ba), '0');
-	if (handle->extra->zero && handle->extra->moins == -1 && handle->extra->precision == -1)
-		ft_print_while(handle, handle->extra->zero - nbdisplay, '0');
-	ft_display_signed(handle, base, ba, nb);
-	if (handle->extra->moins == 0 || handle->extra->moins == -4)
-        handle->extra->moins = handle->extra->zero;
-    if (handle->extra->width != -1 && (handle->extra->moins == 0 || handle->extra->moins == -4))
-        handle->extra->moins = handle->extra->width;
-    if (handle->extra->moins)
-        ft_print_while(handle, handle->extra->moins - nbdisplay, ' ');
+		ft_print_while(handle, handle->extra->precision - len,  '0');
+	if (handle->extra->zero == 1 && handle->extra->moins == -1 && handle->extra->precision == -1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, '0');
+	if (handle->extra->precision == 0 && nb == 0)
+		ft_rien();
+	else
+		ft_display_signed(handle, base, ba, nb);
+	if (handle->extra->moins == 1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 }
 
 void			ft_flags_unsigned(t_printf *handle, char *base, unsigned int ba, unsigned long long nb)
 {
 	int		nbdisplay;
+	int		len;
 
-	nbdisplay = ft_cal_nbdisplay(handle, ft_nbrlen(nb, 0, ba), 'c', ba);
+	len = ft_nbrlen(nb, 0, ba);
+	if (nb == 0 && handle->extra->precision == 0)
+		len = 0;
+	nbdisplay = ft_cal_nbdisplay(handle, len, 'c', ba, nb);
 	if (handle->extra->precision != -1)
 		handle->extra->zero = -1;
-	if (handle->extra->width && handle->extra->moins == -1 && handle->extra->zero == -1)
+	if (handle->extra->moins == -1 && handle->extra->zero == -1)
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
-	if ((handle->extra->zero == 0 || handle->extra->zero == -4) && handle->extra->width != -1)
-		handle->extra->zero = handle->extra->width;
 	if (handle->extra->hastag == 1)
-		ft_print_hastag(handle, 'c', ba);
+	{
+		if (nb == 0 && ba == 16)
+			ft_rien();
+		else
+			ft_print_hastag(handle, 'c', ba);
+	}
 	if (handle->extra->precision != -1)
-		ft_print_while(handle, handle->extra->precision - ft_nbrlen(nb, 0, ba), '0');
-	if (handle->extra->zero && handle->extra->moins == -1 && handle->extra->precision == -1)
-		ft_print_while(handle, handle->extra->zero - nbdisplay, '0');
-	ft_display_unsigned(handle, base, ba, nb);
-	handle->nbprint += ft_nbrlen(nb, 0, ba);
-	if (handle->extra->moins == 0 || handle->extra->moins == -4)
-        handle->extra->moins = handle->extra->zero;
-    if (handle->extra->width != -1 && (handle->extra->moins == 0 || handle->extra->moins == -4))
-        handle->extra->moins = handle->extra->width;
-    if (handle->extra->moins)
-        ft_print_while(handle, handle->extra->moins - nbdisplay, ' ');
+		ft_print_while(handle, handle->extra->precision - len, '0');
+	if (handle->extra->zero  == 1&& handle->extra->moins == -1 && handle->extra->precision == -1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, '0');
+	if (handle->extra->precision == 0 && nb == 0)
+		ft_rien();
+	else
+		ft_display_unsigned(handle, base, ba, nb);
+	if (handle->extra->moins == 1)
+		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 }
 
 void			ft_print_signed(t_printf *handle, int ba)

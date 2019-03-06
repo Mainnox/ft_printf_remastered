@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/02/27 16:53:25 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 10:12:00 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		ft_print_while(t_printf *handle, int len, char c)
 {
-	handle->nbprint += len;
 	while (len > 0)
 	{
 		ft_print_char(handle, c);
@@ -22,16 +21,19 @@ void		ft_print_while(t_printf *handle, int len, char c)
 	}
 }
 
-int			ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba)
+int			ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba, unsigned long long nb)
 {
 	if (handle->extra->precision > len)
 		len = handle->extra->precision;
-	if (handle->extra->hastag == 1 && c == 'X')
-		len += 2;
-	else if (handle->extra->hastag == 1 && ba == 16)
-		len += 2;
-	else if (handle->extra->hastag == 1)
-		len++;
+	if (nb != 0)
+	{
+		if (handle->extra->hastag == 1 && c == 'X')
+			len += 2;
+		else if (handle->extra->hastag == 1 && ba == 16)
+			len += 2;
+		else if (handle->extra->hastag == 1)
+			len++;
+	}
 	return (len);
 }
 
