@@ -4,9 +4,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-//SUPPRIME CA
-#include <stdio.h>
-// Au dessus
 
 
 typedef struct	s_extra
@@ -30,11 +27,6 @@ typedef struct	s_printf
 	va_list		ap;
 	t_extra		*extra;
 }				t_printf;
-
-// SUPPRIME LES TEST
-void	ft_putstr_test(const char *str);
-void	ft_putchar_test(char c);
-//STP
 
 void	ft_putchar_printf(t_printf *handle);
 void	ft_flags_printf(t_printf *handle);
