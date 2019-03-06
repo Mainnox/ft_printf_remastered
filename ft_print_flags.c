@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 13:44:11 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:12:36 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba, unsig
 {
 	if (handle->extra->precision > len)
 		len = handle->extra->precision;
-	if (nb != 0)
+	if (nb != 0 || ba != 16)
 	{
 		if (handle->extra->hastag == 1 && c == 'X')
 			len += 2;
