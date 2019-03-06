@@ -39,7 +39,7 @@ void		ft_flags_printf(t_printf *handle)
 			ft_set_width(handle);
 			continue;
 		}
-		if (handle->extra->done == -1 && (handle->str[handle->index] == 'j' || handle->str[handle->index] == 'h' || handle->str[handle->index] == 'l'))
+		if (handle->extra->done == -1 && (handle->str[handle->index] == 'j' || handle->str[handle->index] == 'h' || handle->str[handle->index] == 'l' || handle->str[handle->index] == 'z'))
 		{
 				ft_set_size(handle);
 				continue;
@@ -54,7 +54,7 @@ void		ft_flags_printf(t_printf *handle)
 			ft_set_size(handle);
 			continue;
 		}
-		if (handle ->extra->done == -1 && (handle->str[handle->index] == 'c' || handle->str[handle->index] == 's' || handle->str[handle->index] == 'd' || handle->str[handle->index] == 'i' || handle->str[handle->index] == 'o' || handle->str[handle->index] == 'u' || handle->str[handle->index] == 'x' || handle->str[handle->index] == 'X' || handle->str[handle->index] == '%' || handle->str[handle->index] == 'p'))
+		if (handle ->extra->done == -1 && (handle->str[handle->index] == 'c' || handle->str[handle->index] == 's' || handle->str[handle->index] == 'd' || handle->str[handle->index] == 'i' || handle->str[handle->index] == 'o' || handle->str[handle->index] == 'u' || handle->str[handle->index] == 'x' || handle->str[handle->index] == 'X' || handle->str[handle->index] == '%' || handle->str[handle->index] == 'p' || handle->str[handle->index] == 'U'))
 			ft_print_printf(handle);
 		break;
 	}

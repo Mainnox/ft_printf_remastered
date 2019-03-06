@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:02:24 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 11:34:28 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 13:05:40 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,10 @@ void		ft_print_printf(t_printf *handle)
 		handle->extra->hastag = 1;
 		handle->extra->size = 6;
 		ft_print_unsigned(handle, 16);
+	}
+	if (handle->str[handle->index] == 'U' && handle->extra->done == -1)
+	{
+		handle->extra->size = 3;
+		ft_print_unsigned(handle, 10);
 	}
 }

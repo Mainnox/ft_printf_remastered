@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 11:32:30 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 12:59:13 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ void			ft_print_signed(t_printf *handle, int ba)
 		ft_flags_signed(handle, base, ba, (long long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 5)
 		ft_flags_signed(handle, base, ba, (intmax_t)va_arg(handle->ap, unsigned *));
+	else if (handle->extra->size == 7)
+		ft_flags_signed(handle, base, ba, (ssize_t)va_arg(handle->ap, unsigned *));
 	else 
 		ft_flags_signed(handle, base, ba, (int)va_arg(handle->ap, unsigned *));
 	handle->index++;
@@ -193,6 +195,8 @@ void			ft_print_unsigned(t_printf *handle, unsigned int ba)
 		ft_flags_unsigned(handle, base, ba, (unsigned long long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 5)
 		ft_flags_unsigned(handle, base, ba, (uintmax_t)va_arg(handle->ap, unsigned *));
+	else if (handle->extra->size == 7)
+		ft_flags_unsigned(handle, base, ba, (size_t)va_arg(handle->ap, unsigned *));
 	else 
 		ft_flags_unsigned(handle, base, ba, (unsigned int)va_arg(handle->ap, unsigned *));
 	handle->index++;
@@ -213,6 +217,8 @@ void			ft_print_X(t_printf *handle, unsigned int ba)
 		ft_flags_X(handle, base, ba, (unsigned long long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 5)
 		ft_flags_X(handle, base, ba, (uintmax_t)va_arg(handle->ap, unsigned *));
+	else if (handle->extra->size == 7)
+		ft_flags_X(handle, base, ba, (size_t)va_arg(handle->ap, unsigned *));
 	else 
 		ft_flags_X(handle, base, ba, (unsigned int)va_arg(handle->ap, unsigned *));
 	handle->index++;
