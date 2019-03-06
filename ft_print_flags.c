@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 11:21:43 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/06 13:44:11 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int			ft_cal_p(t_printf *handle, int len, char c, unsigned int ba)
 {
 	if (handle->extra->precision > len)
 		len = handle->extra->precision;
-		if (handle->extra->hastag == 1 && c == 'X')
-			len += 2;
-		else if (handle->extra->hastag == 1 && ba == 16)
-			len += 2;
-		else if (handle->extra->hastag == 1)
-			len++;
+	if (handle->extra->hastag == 1 && c == 'X')
+		len += 2;
+	else if (handle->extra->hastag == 1 && ba == 16)
+		len += 2;
+	else if (handle->extra->hastag == 1)
+		len++;
 	return (len);
 }
 

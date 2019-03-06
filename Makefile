@@ -6,7 +6,7 @@
 #    By: akremer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/26 06:47:20 by akremer           #+#    #+#              #
-#    Updated: 2019/03/06 06:33:07 by akremer          ###   ########.fr        #
+#    Updated: 2019/03/06 13:52:18 by akremer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRC =	ft_atoi_printf.c			\
 		ft_set_1.c					\
 		ft_set_2.c					\
 		ft_set_size.c				\
-		ft_putstr_test.c			\
 		ft_print_printf.c			\
 		ft_print_c.c				\
 		ft_print_flags.c			\

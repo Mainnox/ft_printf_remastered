@@ -50,7 +50,7 @@ void	ft_print_str(t_printf *handle, char *str);
 void	ft_print_s(t_printf *handle, unsigned *s);
 void	ft_print_signed(t_printf *handle, int base);
 void	ft_print_unsigned(t_printf *handle, unsigned int base);
-void	ft_print_X(t_printf *handle, unsigned int base);
+void	ft_print_gx(t_printf *handle, unsigned int base);
 void	ft_print_hastag(t_printf *handle, char c, unsigned int ba);
 int		ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba, unsigned long long nb);
 int		ft_cal_p(t_printf *handle, int len, char c, unsigned int ba);
