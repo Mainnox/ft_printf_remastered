@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:03:56 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 11:27:44 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 14:41:18 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			ft_set_precision(t_printf *h)
 	{
 		h->extra->precision = (int)va_arg(h->ap, unsigned *);
 		if (h->extra->precision < 0)
-			h->extra->precision = -h->extra->precision;
+			h->extra->precision = -1;
 		if (h->extra->precision == -4)
 			h->extra->precision = 0;
 		h->i++;

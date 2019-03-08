@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 09:55:51 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 13:20:45 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 15:06:44 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,19 @@ void		ft_print_s(t_printf *h, unsigned *s)
 	char	*str;
 	int		len;
 
-	str = (char *)s;
-	if (!s)
-		ft_print_str(h, "(null)");
+	len = 0;
+	if (!(char *)s)
+		str = "(null)";
 	else
-	{
-		len = ft_cal_len(h, str);
-		if (h->extra->precision != -1)
-			h->extra->zero = -1;
-		if (h->extra->moins == -1 && h->extra->zero == -1)
-			ft_print_while(h, h->extra->width - len, ' ');
-		if (h->extra->zero == 1 && h->extra->moins == -1)
-			ft_print_while(h, h->extra->width - len, '0');
-		ft_print_pre(h, str, len);
-		if (h->extra->moins == 1)
-			ft_print_while(h, h->extra->width - len, ' ');
-	}
+		str = (char *)s;
+	len = ft_cal_len(h, str);
+	if (h->extra->moins == -1 && h->extra->zero == -1)
+		ft_print_while(h, h->extra->width - len, ' ');
+	if (h->extra->zero == 1 && h->extra->moins == -1)
+		ft_print_while(h, h->extra->width - len, '0');
+	ft_print_pre(h, str, len);
+	if (h->extra->moins == 1)
+		ft_print_while(h, h->extra->width - len, ' ');
 	h->i++;
 	h->extra->done = 12;
 }
