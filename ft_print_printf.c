@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:02:24 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 14:53:52 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 08:20:30 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ void		ft_print_printf(t_printf *handle)
 		handle->extra->size = 3;
 		ft_print_signed(handle, 10);
 	}
+	if (handle->str[handle->index] == 'f')
+		ft_print_float(handle);
 }

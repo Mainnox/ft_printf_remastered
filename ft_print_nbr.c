@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 07:29:51 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 08:42:07 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,67 @@ void			ft_print_gx(t_printf *handle, unsigned int ba)
 		ft_flags_gx(handle, base, ba, (size_t)va_arg(handle->ap, unsigned *));
 	else 
 		ft_flags_gx(handle, base, ba, (unsigned int)va_arg(handle->ap, unsigned *));
+	handle->index++;
+	handle->extra->done = 12;
+}
+
+void			ft_flags_float(t_printf *handle, double f)
+{
+	unsigned long long nb;
+
+	if (f < 0)
+	{
+		f = -f;
+		ft_print_char(handle, '-');
+	}
+	nb = (unsigned long long)f;
+	ft_display_unsigned(handle, "0123456789", 10, nb);
+	if (handle->extra->precision == -1)
+		handle->extra->precision = 6;
+	if (handle->extra->precision > 0)
+	{
+		f -= nb;
+		ft_print_char(handle, '.');
+		while (handle->extra->precision > 0)
+		{
+			f *= 10;
+			handle->extra->precision--;
+		}
+		f += 0.5;
+		nb = (unsigned long long)f;
+		ft_display_unsigned(handle, "0123456789", 10, nb);
+	}
+}
+
+void			ft_flags_float_L(t_printf *handle, long double f)
+{
+	unsigned long long nb;
+
+	nb = (unsigned long long)f;
+	ft_display_unsigned(handle, "0123456789", 10, nb);
+	if (handle->extra->precision == -1)
+		handle->extra->precision = 6;
+	if (handle->extra->precision > 0)
+	{
+		f -= nb;
+		ft_print_char(handle, '.');
+		while (handle->extra->precision > 0)
+		{
+			f *= 10;
+			handle->extra->precision--;
+		}
+		f += 0.5;
+		nb = (unsigned long long)f;
+		ft_display_unsigned(handle, "0123456789", 10, nb);
+	}
+}
+
+void			ft_print_float(t_printf *handle)
+{
+	if (handle->extra->size != 10)
+		ft_flags_float(handle, va_arg(handle->ap, double));
+	else
+		ft_flags_float_L(handle, va_arg(handle->ap, long double));
 	handle->index++;
 	handle->extra->done = 12;
 }

@@ -59,4 +59,6 @@ void	ft_print_signe(t_printf *handle, char signe);
 void	ft_print_pc(t_printf *handle);
 void	ft_print_char(t_printf *handle, char c);
 void	ft_print_char2( char c);
+void	ft_flags_float(t_printf *handle, double f);
+void	ft_print_float(t_printf *handle);
 #endif

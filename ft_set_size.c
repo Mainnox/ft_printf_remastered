@@ -38,6 +38,8 @@ void        ft_set_size(t_printf *handle)
 		if (handle->str[handle->index] == 'z')
 				if (handle->extra->size < 7)
 			handle->extra->size = 7;
+		if (handle->str[handle->index] == 'L')
+			handle->extra->size = 10;
 		handle->index++;
 		break ;
     }

@@ -6,8 +6,8 @@ int			main()
 	int i;
 	int j;
 
-	i =    printf("Le vrai : %#.44zo42\n", 0);
-	j = ft_printf("Le faux : %#.44zo42\n", 0);
+	i =    printf("Le vrai : %Lf\n", 10.520000);
+	j = ft_printf("Le faux : %Lf\n", 10.520000);
 	printf("Le vrai : %d\nLe faux : %d\n", i, j);
 	return (0);
 }
