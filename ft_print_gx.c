@@ -6,11 +6,12 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:07:58 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 13:33:17 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 13:54:19 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static void			ft_display_hastag_gx(t_printf *h, unsigned int ba
 		, unsigned long long nb)
@@ -36,7 +37,7 @@ void				ft_flags_gx(t_printf *h, char *base, unsigned int ba,
 	if (h->extra->moins == -1 && h->extra->zero == -1)
 		ft_print_while(h, h->extra->width - nbdisplay, ' ');
 	if (h->extra->hastag == 1)
-		ft_display_hastag_gx(h, nb, ba);
+		ft_display_hastag_gx(h, ba, nb);
 	if (h->extra->precision != -1)
 		ft_print_while(h, h->extra->precision - len, '0');
 	if (h->extra->zero == 1 && h->extra->moins == -1
