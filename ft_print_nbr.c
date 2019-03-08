@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 08:42:07 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 09:51:58 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			ft_flags_gx(t_printf *handle, char *base, unsigned int ba,
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 }
 
-void			ft_flags_signed(t_printf *handle, char *base,
+void			ft_f_s(t_printf *handle, char *base,
 		unsigned int ba, long long nb)
 {
 	int		nbdisplay;
@@ -133,7 +133,7 @@ void			ft_flags_p(t_printf *handle, char *base,
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 }
 
-void			ft_flags_unsigned(t_printf *handle, char *base,
+void			ft_f_u(t_printf *handle, char *base,
 		unsigned int ba, unsigned long long nb)
 {
 	int		nbdisplay;
@@ -153,7 +153,8 @@ void			ft_flags_unsigned(t_printf *handle, char *base,
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 	if (handle->extra->hastag == 1)
 	{
-		if ((nb == 0 || (ba == 8 && handle->extra->precision > len)) && chiant != 1)
+		if ((nb == 0 || (ba == 8 && handle->extra->precision > len))
+				&& chiant != 1)
 			ft_rien();
 		else
 			ft_print_hastag(handle, 'c', ba);
@@ -173,54 +174,57 @@ void			ft_flags_unsigned(t_printf *handle, char *base,
 
 void			ft_print_signed(t_printf *handle, int ba)
 {
-	char base[16] = "0123456789abcdef";
-
+	char *base;
+	
+	base = "0123456789abcdef";
 	if (handle->extra->size == 1)
-		ft_flags_signed(handle, base, ba, (char)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (char)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 2)
-		ft_flags_signed(handle, base, ba, (short)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (short)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 3)
-		ft_flags_signed(handle, base, ba, (long)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 4)
-		ft_flags_signed(handle, base, ba, (long long)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (long long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 5)
-		ft_flags_signed(handle, base, ba, (intmax_t)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (intmax_t)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 7)
-		ft_flags_signed(handle, base, ba, (ssize_t)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (ssize_t)va_arg(handle->ap, unsigned *));
 	else 
-		ft_flags_signed(handle, base, ba, (int)va_arg(handle->ap, unsigned *));
+		ft_f_s(handle, base, ba, (int)va_arg(handle->ap, unsigned *));
 	handle->index++;
 	handle->extra->done = 12;
 }
 
 void			ft_print_unsigned(t_printf *handle, unsigned int ba)
 {
-	char base[16] = "0123456789abcdef";
+	char *base; 
 
+	base = "0123456789abcdef";
 	if (handle->extra->size == 1)
-		ft_flags_unsigned(handle, base, ba, (unsigned char)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (unsigned char)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 2)
-		ft_flags_unsigned(handle, base, ba, (unsigned short)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (unsigned short)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 3)
-		ft_flags_unsigned(handle, base, ba, (unsigned long)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (unsigned long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 6)
 		ft_flags_p(handle, base, ba, (unsigned long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 4)
-		ft_flags_unsigned(handle, base, ba, (unsigned long long)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (unsigned long long)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 5)
-		ft_flags_unsigned(handle, base, ba, (uintmax_t)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (uintmax_t)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 7)
-		ft_flags_unsigned(handle, base, ba, (size_t)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (size_t)va_arg(handle->ap, unsigned *));
 	else 
-		ft_flags_unsigned(handle, base, ba, (unsigned int)va_arg(handle->ap, unsigned *));
+		ft_f_u(handle, base, ba, (unsigned int)va_arg(handle->ap, unsigned *));
 	handle->index++;
 	handle->extra->done = 12;
 }
 
 void			ft_print_gx(t_printf *handle, unsigned int ba)
 {
-	char base[16] = "0123456789ABCDEF";
-
+	char *base;
+   
+	base = "0123456789ABCDEF";
 	if (handle->extra->size == 1)
 		ft_flags_gx(handle, base, ba, (unsigned char)va_arg(handle->ap, unsigned *));
 	else if (handle->extra->size == 2)
@@ -235,67 +239,6 @@ void			ft_print_gx(t_printf *handle, unsigned int ba)
 		ft_flags_gx(handle, base, ba, (size_t)va_arg(handle->ap, unsigned *));
 	else 
 		ft_flags_gx(handle, base, ba, (unsigned int)va_arg(handle->ap, unsigned *));
-	handle->index++;
-	handle->extra->done = 12;
-}
-
-void			ft_flags_float(t_printf *handle, double f)
-{
-	unsigned long long nb;
-
-	if (f < 0)
-	{
-		f = -f;
-		ft_print_char(handle, '-');
-	}
-	nb = (unsigned long long)f;
-	ft_display_unsigned(handle, "0123456789", 10, nb);
-	if (handle->extra->precision == -1)
-		handle->extra->precision = 6;
-	if (handle->extra->precision > 0)
-	{
-		f -= nb;
-		ft_print_char(handle, '.');
-		while (handle->extra->precision > 0)
-		{
-			f *= 10;
-			handle->extra->precision--;
-		}
-		f += 0.5;
-		nb = (unsigned long long)f;
-		ft_display_unsigned(handle, "0123456789", 10, nb);
-	}
-}
-
-void			ft_flags_float_L(t_printf *handle, long double f)
-{
-	unsigned long long nb;
-
-	nb = (unsigned long long)f;
-	ft_display_unsigned(handle, "0123456789", 10, nb);
-	if (handle->extra->precision == -1)
-		handle->extra->precision = 6;
-	if (handle->extra->precision > 0)
-	{
-		f -= nb;
-		ft_print_char(handle, '.');
-		while (handle->extra->precision > 0)
-		{
-			f *= 10;
-			handle->extra->precision--;
-		}
-		f += 0.5;
-		nb = (unsigned long long)f;
-		ft_display_unsigned(handle, "0123456789", 10, nb);
-	}
-}
-
-void			ft_print_float(t_printf *handle)
-{
-	if (handle->extra->size != 10)
-		ft_flags_float(handle, va_arg(handle->ap, double));
-	else
-		ft_flags_float_L(handle, va_arg(handle->ap, long double));
 	handle->index++;
 	handle->extra->done = 12;
 }
