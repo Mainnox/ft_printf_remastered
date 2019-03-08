@@ -21,6 +21,8 @@ void        ft_set_precision(t_printf *handle)
 		handle->extra->precision = (int)va_arg(handle->ap, unsigned *);
 		if (handle->extra->precision < 0)
 			handle->extra->precision = -handle->extra->precision;
+		if (handle->extra->precision == -4)
+			handle->extra->precision = 0;
 		handle->index++;
 		return ;
 	}

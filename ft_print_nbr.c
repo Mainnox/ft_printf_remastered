@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 10:43:50 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 16:12:38 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 07:29:51 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,11 @@ void			ft_flags_unsigned(t_printf *handle, char *base,
 {
 	int		nbdisplay;
 	int		len;
+	char	chiant;
 
+	chiant = 0;
+	if (handle->extra->precision == 0 && nb == 0 && ba == 8)
+		chiant = 1;
 	len = ft_nbrlen(nb, 0, ba);
 	if (nb == 0 && handle->extra->precision == 0)
 		len = 0;
@@ -149,7 +153,7 @@ void			ft_flags_unsigned(t_printf *handle, char *base,
 		ft_print_while(handle, handle->extra->width - nbdisplay, ' ');
 	if (handle->extra->hastag == 1)
 	{
-		if (nb == 0 && ba == 16)
+		if ((nb == 0 || (ba == 8 && handle->extra->precision > len)) && chiant != 1)
 			ft_rien();
 		else
 			ft_print_hastag(handle, 'c', ba);

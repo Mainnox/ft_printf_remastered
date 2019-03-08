@@ -6,7 +6,7 @@
 #    By: akremer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/26 06:47:20 by akremer           #+#    #+#              #
-#    Updated: 2019/03/06 13:52:18 by akremer          ###   ########.fr        #
+#    Updated: 2019/03/08 06:49:29 by akremer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,6 @@ fclean: clean
 
 re: fclean all
 
-test: re
-	@gcc main_test.c $(NAME)
-	@./a.out
-
 propre:	fclean
 	@rm -rf a.out
 
@@ -59,4 +55,6 @@ save: propre
 	git commit -m "Sauvegarde auto"
 	git push
 
-
+test: re
+	@gcc main.c $(NAME)
+	@./a.out
