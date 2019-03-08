@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_plus.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 10:08:45 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 11:26:52 by akremer          ###   ########.fr       */
+/*   Created: 2019/03/08 10:16:07 by akremer           #+#    #+#             */
+/*   Updated: 2019/03/08 11:26:54 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_nbrlen(unsigned long long nb, char signe, unsigned int ba)
+void		ft_print_while(t_printf *h, int len, char c)
 {
-	int ret;
-
-	ret = 1;
-	if (signe == 1)
-		ret++;
-	while (nb >= ba)
+	while (len > 0)
 	{
-		nb /= ba;
-		ret++;
+		ft_print_char(h, c);
+		len--;
 	}
-	return (ret);
 }

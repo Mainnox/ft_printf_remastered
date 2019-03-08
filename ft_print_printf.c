@@ -6,44 +6,51 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:02:24 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 09:42:48 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 11:41:04 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_print_printf(t_printf *handle)
+static void	ft_print_printf_extra(t_printf *h)
 {
-	if (handle->str[handle->index] == 'c' && handle->extra->done == -1)
-		ft_print_c(handle, va_arg(handle->ap, unsigned*));
-	if (handle->str[handle->index] == 's' && handle->extra->done == -1)
-		ft_print_s(handle, va_arg(handle->ap, unsigned*));
-	if ((handle->str[handle->index] == 'd' || handle->str[handle->index] == 'i') && handle->extra->done == -1)
-		ft_print_signed(handle, 10);
-	if (handle->str[handle->index] == 'o' && handle->extra->done == -1)
-		ft_print_unsigned(handle, 8);
-	if (handle->str[handle->index] == 'u' && handle->extra->done == -1)
-		ft_print_unsigned(handle, 10);
-	if (handle->str[handle->index] == 'x' && handle->extra->done == -1)
-		ft_print_unsigned(handle, 16);
-	if (handle->str[handle->index] == 'X' && handle->extra->done == -1)
-		ft_print_gx(handle, 16);
-	if (handle->str[handle->index] == '%' && handle->extra->done == -1)
-		ft_print_pc(handle);
-	if (handle->str[handle->index] == 'p' && handle->extra->done == -1)
+	if (h->str[h->i] == 'p' && h->extra->done == -1)
 	{
-		handle->extra->hastag = 1;
-		handle->extra->size = 6;
-		ft_print_unsigned(handle, 16);
+		h->extra->hastag = 1;
+		h->extra->size = 6;
+		ft_print_unsigned(h, 16);
 	}
-	if (handle->str[handle->index] == 'U' && handle->extra->done == -1)
+	if (h->str[h->i] == 'U' && h->extra->done == -1)
 	{
-		handle->extra->size = 3;
-		ft_print_unsigned(handle, 10);
+		h->extra->size = 3;
+		ft_print_unsigned(h, 10);
 	}
-	if (handle->str[handle->index] == 'D' && handle->extra->done == -1)
+	if (h->str[h->i] == 'D' && h->extra->done == -1)
 	{
-		handle->extra->size = 3;
-		ft_print_signed(handle, 10);
+		h->extra->size = 3;
+		ft_print_signed(h, 10);
 	}
+}
+
+void		ft_print_printf(t_printf *h)
+{
+	if (h->str[h->i] == 'c' && h->extra->done == -1)
+		ft_print_c(h, va_arg(h->ap, unsigned*));
+	if (h->str[h->i] == 's' && h->extra->done == -1)
+		ft_print_s(h, va_arg(h->ap, unsigned*));
+	if ((h->str[h->i] == 'd' || h->str[h->i] == 'i') && h->extra->done == -1)
+		ft_print_signed(h, 10);
+	if (h->str[h->i] == 'o' && h->extra->done == -1)
+		ft_print_unsigned(h, 8);
+	if (h->str[h->i] == 'u' && h->extra->done == -1)
+		ft_print_unsigned(h, 10);
+	if (h->str[h->i] == 'x' && h->extra->done == -1)
+		ft_print_unsigned(h, 16);
+	if (h->str[h->i] == 'X' && h->extra->done == -1)
+		ft_print_gx(h, 16);
+	if (h->str[h->i] == '%' && h->extra->done == -1)
+		ft_print_pc(h);
+	if (h->extra->done == -1 && (h->str[h->i] == 'p'
+			|| h->str[h->i] == 'U' || h->str[h->i] == 'D'))
+		ft_print_printf_extra(h);
 }

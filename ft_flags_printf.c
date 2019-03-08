@@ -6,79 +6,111 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 13:38:30 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 09:43:26 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 11:37:06 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_flags_printf(t_printf *handle)
+static void	ft_flags_set_1(t_printf *h)
 {
 	while (42)
 	{
-		if (handle->extra->done == -1 && handle->str[handle->index] == '-')
+		if (h->extra->done == -1 && h->str[h->i] == '-')
 		{
-			ft_set_moins(handle);
+			ft_set_moins(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && handle->str[handle->index] == '+')
+		if (h->extra->done == -1 && h->str[h->i] == '+')
 		{
-			ft_set_plus(handle);
+			ft_set_plus(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && handle->str[handle->index] == '#')
+		if (h->extra->done == -1 && h->str[h->i] == '#')
 		{
-			ft_set_hastag(handle);
+			ft_set_hastag(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && handle->str[handle->index] == '.')
+		if (h->extra->done == -1 && h->str[h->i] == '.')
 		{
-			ft_set_precision(handle);
+			ft_set_precision(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && handle->str[handle->index] == ' ')
+		break ;
+	}
+}
+
+static void	ft_flags_set_2(t_printf *h)
+{
+	while (42)
+	{
+		if (h->extra->done == -1 && h->str[h->i] == ' ')
 		{
-			ft_set_blanck(handle);
+			ft_set_blanck(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && handle->str[handle->index] == '*')
+		if (h->extra->done == -1 && h->str[h->i] == '*')
 		{
-			ft_set_star(handle);
+			ft_set_star(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && (handle->str[handle->index] >= '1'
-					&& handle->str[handle->index] <= '9'))
+		if (h->extra->done == -1 && (h->str[h->i] >= '1'
+					&& h->str[h->i] <= '9'))
 		{
-			ft_set_width(handle);
+			ft_set_width(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && (handle->str[handle->index] == 'j'
-					|| handle->str[handle->index] == 'h'
-					|| handle->str[handle->index] == 'l'
-					|| handle->str[handle->index] == 'z'))
+		if (h->extra->done == -1 && h->str[h->i] == '0')
 		{
-			ft_set_size(handle);
+			ft_set_zero(h);
 			continue;
 		}
-		if (handle->extra->done == -1 && handle->str[handle->index] == '0')
+		break ;
+	}
+}
+
+static void	ft_flags_set_m(t_printf *h)
+{
+	while (42)
+	{
+		if (h->extra->done == -1 && (h->str[h->i] == '-'
+				|| h->str[h->i] == '+' || h->str[h->i] == '#'
+				|| h->str[h->i] == '.'))
 		{
-			ft_set_zero(handle);
+			ft_flags_set_1(h);
+			continue ;
+		}
+		if (h->extra->done == -1 && (h->str[h->i] == ' ' || h->str[h->i] == '*'
+				|| (h->str[h->i] >= '1' && h->str[h->i] <= '9')
+				|| h->str[h->i] == '0'))
+		{
+			ft_flags_set_2(h);
+			continue ;
+		}
+		if (h->extra->done == -1 && (h->str[h->i] == 'j'
+				|| h->str[h->i] == 'h' || h->str[h->i] == 'l'
+				|| h->str[h->i] == 'z'))
+		{
+			ft_set_size(h);
 			continue;
 		}
-		if (handle->extra->done == -1
-				&& (handle->str[handle->index] == 'c'
-					|| handle->str[handle->index] == 's'
-					|| handle->str[handle->index] == 'd'
-					|| handle->str[handle->index] == 'i'
-					|| handle->str[handle->index] == 'o'
-					|| handle->str[handle->index] == 'u'
-					|| handle->str[handle->index] == 'x'
-					|| handle->str[handle->index] == 'X'
-					|| handle->str[handle->index] == '%'
-					|| handle->str[handle->index] == 'p'
-					|| handle->str[handle->index] == 'D'
-					|| handle->str[handle->index] == 'U'))
-			ft_print_printf(handle);
+		break ;
+	}
+}
+
+void		ft_flags_printf(t_printf *h)
+{
+	while (42)
+	{
+		ft_flags_set_m(h);
+		if (h->extra->done == -1 && (h->str[h->i] == 'c'
+				|| h->str[h->i] == 's' || h->str[h->i] == 'd'
+				|| h->str[h->i] == 'i' || h->str[h->i] == 'o'
+				|| h->str[h->i] == 'u' || h->str[h->i] == 'x'
+				|| h->str[h->i] == 'X' || h->str[h->i] == '%'
+				|| h->str[h->i] == 'p' || h->str[h->i] == 'D'
+				|| h->str[h->i] == 'U'))
+			ft_print_printf(h);
 		break ;
 	}
 }

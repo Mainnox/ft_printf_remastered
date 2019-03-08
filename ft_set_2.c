@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_set_2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 10:04:47 by akremer           #+#    #+#             */
+/*   Updated: 2019/03/08 11:27:56 by akremer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void        ft_set_hastag(t_printf *handle)
+void		ft_set_hastag(t_printf *h)
 {
-    handle->index++;
-    handle->extra->hastag = 1;
+	h->i++;
+	h->extra->hastag = 1;
 }
 
-void        ft_set_plus(t_printf *handle)
+void		ft_set_plus(t_printf *h)
 {
-    handle->index++;
-    handle->extra->plus = 1;
+	h->i++;
+	h->extra->plus = 1;
 }
 
-void		ft_set_star(t_printf *handle)
+void		ft_set_star(t_printf *h)
 {
-	handle->index++;
-	handle->extra->width = (int)va_arg(handle->ap, unsigned *);
-	if (handle->extra->width < 0)
+	h->i++;
+	h->extra->width = (int)va_arg(h->ap, unsigned *);
+	if (h->extra->width < 0)
 	{
-		handle->extra->width = -handle->extra->width;
-		handle->extra->moins = 1;
+		h->extra->width = -h->extra->width;
+		h->extra->moins = 1;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:24:22 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 09:52:40 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 11:26:41 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_atoi_printf(t_printf *handle)
+int			ft_atoi_printf(t_printf *h)
 {
 	int			i;
 	int			result;
@@ -20,9 +20,9 @@ int			ft_atoi_printf(t_printf *handle)
 	int			tours;
 
 	tours = 0;
-	str = handle->str;
+	str = h->str;
 	result = 0;
-	i = handle->index;
+	i = h->i;
 	if (str[i])
 	{
 		while (str[i] >= '0' && str[i] <= '9')

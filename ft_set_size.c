@@ -1,46 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_set_size.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 10:05:25 by akremer           #+#    #+#             */
+/*   Updated: 2019/03/08 11:57:26 by akremer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void        ft_set_size(t_printf *handle)
+static void		ft_set_h(t_printf *h)
 {
-    while (42)
-    {
-        if (handle->str[handle->index] == 'h')
-        {
-            handle->index++;
-            if (handle->str[handle->index] == 'h')
-            {
-				if (handle->extra->size < 1)
-             	   handle->extra->size = 1;
-                handle->index++;
-                break;
-            }
-				if (handle->extra->size < 2)
-            handle->extra->size = 2;
-            break;
-        }
-        if (handle->str[handle->index] == 'l')
-        {
-            handle->index++;
-            if (handle->str[handle->index] == 'l')
-            {
-				if (handle->extra->size < 4)
-                handle->extra->size = 4;
-                handle->index++;
-                break;
-            }
-				if (handle->extra->size < 3)
-            handle->extra->size = 3;
-            break;
-        }
-		if (handle->str[handle->index] == 'j')
-				if (handle->extra->size < 5)
-			handle->extra->size = 5;
-		if (handle->str[handle->index] == 'z')
-				if (handle->extra->size < 7)
-			handle->extra->size = 7;
-		if (handle->str[handle->index] == 'L')
-			handle->extra->size = 10;
-		handle->index++;
+	while (42)
+	{
+		if (h->str[h->i] == 'h')
+		{
+			h->i++;
+			if (h->str[h->i] == 'h')
+			{
+				if (h->extra->size < 1)
+					h->extra->size = 1;
+				h->i++;
+				break ;
+			}
+			if (h->extra->size < 2)
+				h->extra->size = 2;
+			break ;
+		}
+	}
+}
+
+void			ft_set_l(t_printf *h)
+{
+	while (42)
+	{
+		if (h->str[h->i] == 'l')
+		{
+			h->i++;
+			if (h->str[h->i] == 'l')
+			{
+				if (h->extra->size < 4)
+					h->extra->size = 4;
+				h->i++;
+				break ;
+			}
+			if (h->extra->size < 3)
+				h->extra->size = 3;
+			break ;
+		}
+	}
+}
+
+void			ft_set_size(t_printf *h)
+{
+	while (42)
+	{
+		if (h->str[h->i] == 'h')
+		{
+			ft_set_h(h);
+			break ;
+		}
+		if (h->str[h->i] == 'l')
+		{
+			ft_set_l(h);
+			break ;
+		}
+		if (h->str[h->i] == 'j')
+			if (h->extra->size < 5)
+				h->extra->size = 5;
+		if (h->str[h->i] == 'z')
+			if (h->extra->size < 7)
+				h->extra->size = 7;
+		h->i++;
 		break ;
-    }
+	}
 }

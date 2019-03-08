@@ -1,45 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_set_1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 10:03:56 by akremer           #+#    #+#             */
+/*   Updated: 2019/03/08 11:27:44 by akremer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void        ft_set_moins(t_printf *handle)
+void			ft_set_moins(t_printf *h)
 {
-	handle->extra->moins = 1;
-	handle->index++;
+	h->extra->moins = 1;
+	h->i++;
 }
 
-void        ft_set_blanck(t_printf *handle)
+void			ft_set_blanck(t_printf *h)
 {
-    handle->index++;
-	handle->extra->blanck = 1;
+	h->i++;
+	h->extra->blanck = 1;
 }
 
-void        ft_set_precision(t_printf *handle)
+void			ft_set_precision(t_printf *h)
 {
-    handle->index++;
-    handle->extra->precision = ft_atoi_printf(handle);
-	if (handle->str[handle->index] == '*')
+	h->i++;
+	h->extra->precision = ft_atoi_printf(h);
+	if (h->str[h->i] == '*')
 	{
-		handle->extra->precision = (int)va_arg(handle->ap, unsigned *);
-		if (handle->extra->precision < 0)
-			handle->extra->precision = -handle->extra->precision;
-		if (handle->extra->precision == -4)
-			handle->extra->precision = 0;
-		handle->index++;
+		h->extra->precision = (int)va_arg(h->ap, unsigned *);
+		if (h->extra->precision < 0)
+			h->extra->precision = -h->extra->precision;
+		if (h->extra->precision == -4)
+			h->extra->precision = 0;
+		h->i++;
 		return ;
 	}
-	if (handle->extra->precision != -4)
- 	   handle->index += ft_nbrlen((unsigned long long)handle->extra->precision, 0, 10);
-	if (handle->extra->precision == -4)
-		handle->extra->precision = 0;
+	if (h->extra->precision != -4)
+		h->i += ft_nbrlen((unsigned long long)h->extra->precision, 0, 10);
+	if (h->extra->precision == -4)
+		h->extra->precision = 0;
 }
 
-void        ft_set_zero(t_printf *handle)
+void			ft_set_zero(t_printf *h)
 {
-    handle->index++;
-	handle->extra->zero = 1;
+	h->i++;
+	h->extra->zero = 1;
 }
 
-void        ft_set_width(t_printf *handle)
+void			ft_set_width(t_printf *h)
 {
-    handle->extra->width = ft_atoi_printf(handle);
-    handle->index += ft_nbrlen((unsigned long long)handle->extra->width, 0, 10);
+	h->extra->width = ft_atoi_printf(h);
+	h->i += ft_nbrlen((unsigned long long)h->extra->width, 0, 10);
 }

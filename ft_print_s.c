@@ -6,55 +6,55 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 09:55:51 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/06 11:09:36 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 13:20:45 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_print_str(t_printf *handle, char *str)
+void		ft_print_str(t_printf *h, char *str)
 {
-	handle->nbprint += ft_strlen(str);
+	h->nbprint += ft_strlen(str);
 	write(1, str, ft_strlen(str));
 }
 
-static void	ft_print_pre(t_printf *handle, char *str, int len)
+static void	ft_print_pre(t_printf *h, char *str, int len)
 {
-	handle->nbprint += len;
+	h->nbprint += len;
 	write(1, str, len);
 }
 
-static int	ft_cal_len(t_printf *handle, char *str)
+static int	ft_cal_len(t_printf *h, char *str)
 {
 	int len;
 
 	len = ft_strlen(str);
-	if (handle->extra->precision != -1 && len > handle->extra->precision)
-		len = handle->extra->precision;
+	if (h->extra->precision != -1 && len > h->extra->precision)
+		len = h->extra->precision;
 	return (len);
 }
 
-void		ft_print_s(t_printf *handle, unsigned *s)
+void		ft_print_s(t_printf *h, unsigned *s)
 {
 	char	*str;
 	int		len;
 
 	str = (char *)s;
 	if (!s)
-		ft_print_str(handle, "(null)");
+		ft_print_str(h, "(null)");
 	else
 	{
-	len = ft_cal_len(handle, str);
-	if (handle->extra->precision != -1)
-		handle->extra->zero = -1;
-	if (handle->extra->moins == -1 && handle->extra->zero == -1)
-		ft_print_while(handle, handle->extra->width - len, ' ');
-	if (handle->extra->zero == 1 && handle->extra->moins == -1)
-		ft_print_while(handle, handle->extra->width - len, '0');
-	ft_print_pre(handle, str, len);
-	if (handle->extra->moins == 1)
-		ft_print_while(handle, handle->extra->width - len, ' ');
+		len = ft_cal_len(h, str);
+		if (h->extra->precision != -1)
+			h->extra->zero = -1;
+		if (h->extra->moins == -1 && h->extra->zero == -1)
+			ft_print_while(h, h->extra->width - len, ' ');
+		if (h->extra->zero == 1 && h->extra->moins == -1)
+			ft_print_while(h, h->extra->width - len, '0');
+		ft_print_pre(h, str, len);
+		if (h->extra->moins == 1)
+			ft_print_while(h, h->extra->width - len, ' ');
 	}
-	handle->index++;
-	handle->extra->done = 12;
+	h->i++;
+	h->extra->done = 12;
 }

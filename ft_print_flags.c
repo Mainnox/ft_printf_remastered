@@ -6,79 +6,69 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:55 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 09:40:38 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 11:27:05 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_print_while(t_printf *handle, int len, char c)
+int			ft_cal_p(t_printf *h, int len, char c, unsigned int ba)
 {
-	while (len > 0)
-	{
-		ft_print_char(handle, c);
-		len--;
-	}
-}
-
-int			ft_cal_p(t_printf *handle, int len, char c, unsigned int ba)
-{
-	if (handle->extra->precision > len)
-		len = handle->extra->precision;
-	if (handle->extra->hastag == 1 && c == 'X')
+	if (h->extra->precision > len)
+		len = h->extra->precision;
+	if (h->extra->hastag == 1 && c == 'X')
 		len += 2;
-	else if (handle->extra->hastag == 1 && ba == 16)
+	else if (h->extra->hastag == 1 && ba == 16)
 		len += 2;
-	else if (handle->extra->hastag == 1)
+	else if (h->extra->hastag == 1)
 		len++;
 	return (len);
 }
 
-int			ft_cal_nbdisplay(t_printf *handle, int len, char c, unsigned int ba, unsigned long long nb)
+int			ft_cal_nbdisplay(t_printf *h, int len,
+		unsigned int ba, unsigned long long nb)
 {
-	if (handle->extra->precision > len)
+	if (h->extra->precision > len)
 	{
-		len = handle->extra->precision;
+		len = h->extra->precision;
 		if (ba == 8)
 			return (len);
 	}
 	if (nb != 0)
 	{
-		if (handle->extra->hastag == 1 && c == 'X')
+		if (h->extra->hastag == 1 && ba == 16)
 			len += 2;
-		else if (handle->extra->hastag == 1 && ba == 16)
-			len += 2;
-		else if (handle->extra->hastag == 1)
+		else if (h->extra->hastag == 1)
 			len++;
 	}
 	return (len);
 }
 
-int			ft_cal_nbdisplay_signed(t_printf *handle, int len, char signe)
+int			ft_cal_nbdisplay_signed(t_printf *h, int len, char signe)
 {
-	if (handle->extra->precision > len)
-		len = handle->extra->precision;
-	if (signe == 0 && (handle->extra->blanck == 1 || handle->extra->plus == 1))
+	if (h->extra->precision > len)
+		len = h->extra->precision;
+	if (signe == 0 && (h->extra->blanck == 1 || h->extra->plus == 1))
 		len++;
 	return (len);
 }
 
-void		ft_print_hastag(t_printf *handle, char c, unsigned int ba)
+void		ft_print_hastag(t_printf *h, char c, unsigned int ba)
 {
 	if (c == 'X')
-		ft_print_str(handle, "0X");
+		ft_print_str(h, "0X");
 	else if (ba == 16)
-		ft_print_str(handle, "0x");
+		ft_print_str(h, "0x");
 	else
-		ft_print_char(handle, '0');
+		ft_print_char(h, '0');
 }
 
-void		ft_print_signe(t_printf *handle, char signe)
+void		ft_print_signe(t_printf *h, char signe)
 {
 	if (signe == 1)
-		ft_print_char(handle, '-');
-	else if (handle->extra->plus == 1)
-		ft_print_char(handle, '+');
-	else if (handle->extra->blanck == 1)
-		ft_print_char(handle, ' ');
+		ft_print_char(h, '-');
+	else if (h->extra->plus == 1)
+		ft_print_char(h, '+');
+	else if (h->extra->blanck == 1)
+		ft_print_char(h, ' ');
 }

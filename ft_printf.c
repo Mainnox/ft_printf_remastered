@@ -1,60 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 09:59:53 by akremer           #+#    #+#             */
+/*   Updated: 2019/03/08 11:27:31 by akremer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int		ft_reset_extra(t_printf *handle)
+static int				ft_reset_extra(t_printf *h)
 {
-	if (handle->extra)
-		free(handle->extra);
-	if (!(handle->extra = (t_extra *)malloc(sizeof(t_extra))))
+	if (h->extra)
+		free(h->extra);
+	if (!(h->extra = (t_extra *)malloc(sizeof(t_extra))))
 		return (0);
-	handle->extra->plus = -1;
-	handle->extra->moins = -1;
-	handle->extra->hastag = -1;
-	handle->extra->precision = -1;
-	handle->extra->blanck = -1;
-	handle->extra->done = -1;
-	handle->extra->width = -1;
-	handle->extra->size = -1;
-	handle->extra->zero = -1;
+	h->extra->plus = -1;
+	h->extra->moins = -1;
+	h->extra->hastag = -1;
+	h->extra->precision = -1;
+	h->extra->blanck = -1;
+	h->extra->done = -1;
+	h->extra->width = -1;
+	h->extra->size = -1;
+	h->extra->zero = -1;
 	return (1);
 }
 
-static t_printf		*ft_create_struct(const char *format)
+static t_printf			*ft_create_struct(const char *format)
 {
-	t_printf *handle;
+	t_printf *h;
 
-	if (!(handle = (t_printf *)malloc(sizeof(t_printf))))
+	if (!(h = (t_printf *)malloc(sizeof(t_printf))))
 		return (NULL);
-	handle->str = format;
-	handle->index = 0;
-	handle->nbprint = 0;
-	handle->extra = NULL;
-	if (!ft_reset_extra(handle))
+	h->str = format;
+	h->i = 0;
+	h->nbprint = 0;
+	h->extra = NULL;
+	if (!ft_reset_extra(h))
 		return (NULL);
-	return (handle);
+	return (h);
 }
 
-int			ft_printf(const char *format, ...)
+int						ft_printf(const char *format, ...)
 {
-	t_printf	*handle;
+	t_printf	*h;
 
-	handle = ft_create_struct(format);
-	va_start(handle->ap, format);
-	if (handle == NULL)
+	h = ft_create_struct(format);
+	va_start(h->ap, format);
+	if (h == NULL)
 		return (-1);
-	while (handle->str[handle->index])
+	while (h->str[h->i])
 	{
-		if (handle->str[handle->index] == '%')
+		if (h->str[h->i] == '%')
 		{
-			handle->index++;
-			ft_flags_printf(handle);
-			if (!ft_reset_extra(handle))
+			h->i++;
+			ft_flags_printf(h);
+			if (!ft_reset_extra(h))
 				return (-1);
 			continue ;
 		}
-		ft_putchar_printf(handle);
+		ft_putchar_printf(h);
 	}
-	free(handle->extra);
-	free(handle);
-	va_end(handle->ap);
-	return (handle->nbprint);
+	free(h->extra);
+	free(h);
+	va_end(h->ap);
+	return (h->nbprint);
 }
