@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:02:24 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 14:16:57 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/19 07:04:41 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	ft_print_printf_extra(t_printf *h)
 		h->extra->size = 3;
 		ft_print_unsigned(h, 8);
 	}
+	if (h->str[h->i] == 'f' && h->extra->done == -1)
+		ft_print_float(h);
 }
 
 void		ft_print_printf(t_printf *h)
@@ -57,6 +59,6 @@ void		ft_print_printf(t_printf *h)
 		ft_print_pc(h);
 	if (h->extra->done == -1 && (h->str[h->i] == 'p'
 			|| h->str[h->i] == 'U' || h->str[h->i] == 'D'
-			|| h->str[h->i] == 'O'))
+			|| h->str[h->i] == 'O' || h->str[h->i] == 'f'))
 		ft_print_printf_extra(h);
 }

@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 13:38:30 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 14:33:31 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/19 06:50:33 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ void		ft_flags_printf(t_printf *h)
 				|| h->str[h->i] == 'u' || h->str[h->i] == 'x'
 				|| h->str[h->i] == 'X' || h->str[h->i] == '%'
 				|| h->str[h->i] == 'p' || h->str[h->i] == 'D'
-				|| h->str[h->i] == 'U' || h->str[h->i] == 'O'))
+				|| h->str[h->i] == 'U' || h->str[h->i] == 'O'
+				|| h->str[h->i] == 'f'))
 			ft_print_printf(h);
 		break ;
 	}
