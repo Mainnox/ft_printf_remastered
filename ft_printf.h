@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:00:57 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/19 06:57:31 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/08 13:33:15 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,4 @@ void			ft_f_s(t_printf *h, char *base
 		, unsigned int ba, long long nb);
 void			ft_flags_gx(t_printf *h, char *base,
 		unsigned int ba, unsigned long long nb);
-void			ft_print_float(t_printf *h);
 #endif
