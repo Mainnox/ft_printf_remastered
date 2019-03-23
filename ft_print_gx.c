@@ -6,12 +6,11 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:07:58 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/23 10:59:04 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/23 12:57:37 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static void			ft_display_hastag_gx(t_printf *h, unsigned int ba
 		, unsigned long long nb)
