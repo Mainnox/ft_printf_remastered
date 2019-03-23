@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:00:57 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 13:33:15 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/23 12:09:52 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void			ft_flags_printf(t_printf *h);
 int				ft_atoi_printf(t_printf *h);
 int				ft_nbrlen(unsigned long long nb, char signe, unsigned int ba);
 void			ft_set_moins(t_printf *h);
+void			ft_print_float(t_printf *h);
 void			ft_set_blanck(t_printf *h);
 void			ft_set_precision(t_printf *h);
 void			ft_set_zero(t_printf *h);

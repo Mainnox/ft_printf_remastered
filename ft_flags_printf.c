@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 13:38:30 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 14:33:31 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/23 11:16:14 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	ft_flags_set_m(t_printf *h)
 		}
 		if (h->extra->done == -1 && (h->str[h->i] == 'j'
 				|| h->str[h->i] == 'h' || h->str[h->i] == 'l'
-				|| h->str[h->i] == 'z'))
+				|| h->str[h->i] == 'z' || h->str[h->i] == 'L'))
 		{
 			ft_set_size(h);
 			continue;
@@ -109,7 +109,8 @@ void		ft_flags_printf(t_printf *h)
 				|| h->str[h->i] == 'u' || h->str[h->i] == 'x'
 				|| h->str[h->i] == 'X' || h->str[h->i] == '%'
 				|| h->str[h->i] == 'p' || h->str[h->i] == 'D'
-				|| h->str[h->i] == 'U' || h->str[h->i] == 'O'))
+				|| h->str[h->i] == 'U' || h->str[h->i] == 'O'
+				|| h->str[h->i] == 'f'))
 			ft_print_printf(h);
 		break ;
 	}

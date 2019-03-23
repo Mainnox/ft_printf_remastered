@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 10:08:45 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/23 11:18:18 by akremer          ###   ########.fr       */
+/*   Created: 2019/03/23 11:27:33 by akremer           #+#    #+#             */
+/*   Updated: 2019/03/23 12:09:54 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int			ft_nbrlen(unsigned long long nb, char signe, unsigned int ba)
+int			main()
 {
-	int ret;
+	int i;
+	int j;
 
-	ret = 1;
-	if (signe == 1)
-		ret++;
-	while (nb >= ba)
-	{
-		nb /= ba;
-		ret++;
-	}
-	return (ret);
+	i =    printf("Le vrai: %.f\n", -1.999);
+	j = ft_printf("Le faux: %.f\n", -1.999);
+	ft_printf("return du vrai: %d\nreturn du faux: %d\n", i, j);
 }

@@ -6,7 +6,7 @@
 #    By: akremer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/26 06:47:20 by akremer           #+#    #+#              #
-#    Updated: 2019/03/08 14:09:45 by akremer          ###   ########.fr        #
+#    Updated: 2019/03/23 11:18:16 by akremer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC =	ft_atoi_printf.c			\
 		ft_plus.c					\
 		ft_print_u.c				\
 		ft_print_gx.c				\
-		ft_print_signed.c
+		ft_print_signed.c			\
+		ft_print_float.c
 
 FLAGS =	-Wall -Wextra -Werror -c
 

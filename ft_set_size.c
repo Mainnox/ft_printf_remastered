@@ -6,7 +6,7 @@
 /*   By: akremer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:05:25 by akremer           #+#    #+#             */
-/*   Updated: 2019/03/08 14:04:11 by akremer          ###   ########.fr       */
+/*   Updated: 2019/03/23 11:21:40 by akremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void			ft_set_size(t_printf *h)
 		if (h->str[h->i] == 'z')
 			if (h->extra->size < 7)
 				h->extra->size = 7;
+		if (h->str[h->i] == 'L')
+			h->extra->size = -10;
 		h->i++;
 		break ;
 	}
